@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <title>Recipe Share</title>
+</head>
+<body>
+    <div class="main">
+        <div class="top">
+            <div class="header">
+                <h1>Welcome, {{session['first_name']}}</h1>
+            </div>
+            <div class="second">
+                <h3>All posted recipes:</h3>
+                <div class="top_links">
+                    <a id="create" href="/recipes/new">+ Create</a>
+                    <a href="/logout">logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div >
+                <table  class="table">
+                    <thead class="table_h">
+                        <th>Name</th>
+                        <th>Under</th>
+                        <th>Posted By</th>
+                        <th>Actions</th>
+                    </thead>
+                    {% for recipe in users_recipes %}
+                        {% if id == recipe.user_id %}
+                            <tr>
+                                <td>{{recipe.name}}</td>
+                                <td>{{recipe.under}}</td>
+                                <td>{{recipe.first_name}}</td>
+                                <td>
+                                    <a id="details_1" href="/show/{{recipe.recipe_id}}">view recipe</a>
+                                    <a id="edit" href="/recipes/edit/{{recipe.recipe_id}}">edit</a>
+                                    <a id="destroy" href="/destroy/{{recipe.recipe_id}}">delete</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {% if id != recipe.user_id %}
+                            <tr>
+                                <td>{{recipe.name}}</td>
+                                <td>{{recipe.under}}</td>
+                                <td>{{recipe.first_name}}</td>
+                                <td>
+                                    <a id="details_1" href="/show/{{recipe.recipe_id}}">view recipe</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

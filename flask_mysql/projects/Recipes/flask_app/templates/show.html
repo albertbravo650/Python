@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='show.css') }}">
+    <title>Recipe Share</title>
+</head>
+<body>
+    <div class="main">
+        <div class="top">
+            <div class="header">
+                <h1>Welcome, {{session['first_name']}}</h1>
+                <div class="second">
+                    <div class="top_links">
+                        <a id="recipes" href="/recipes">back to recipes</a>
+                        <a href="/logout">logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <h1>{{recipe.name}}</h1>
+                <h2>Posted by: {{recipe.first_name}}</h2>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="row">
+                <h3>Description:</h3>
+                <p>{{recipe.description}}</p>
+            </div>
+            <div class="row">
+                <h3>Under 30 Minutes?</h3>
+                <p>{{recipe.under}}</p>
+            </div>
+            <div class="row">
+                <h3>Instructions:</h3>
+                <p>{{recipe.instructions}}</p>
+            </div>
+            <div class="row">
+                <h3>Date Made:</h3>
+                <p>{{recipe.date_created}}</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
